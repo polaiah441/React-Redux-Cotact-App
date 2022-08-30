@@ -3,12 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "bootstrap/dist/css/bootstrap.min.css" 
+import {BrowserRouter as Router} from 'react-router-dom'
+import { legacy_createStore } from 'redux'
+import ContactReducer from './Redux/reducers/ContactReducer';
+import { composeWithDevTools } from '@redux-devtools/extension';
+import { Provider } from 'react-redux';
+
+
+const store = legacy_createStore(ContactReducer, composeWithDevTools);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+ 
+  <Provider store={store}>
+     <Router>
     <App />
-  </React.StrictMode>
+    </Router>
+  </Provider>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function
